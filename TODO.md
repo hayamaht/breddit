@@ -4,8 +4,7 @@
 * [X] delete `vercel.svg`, `next.svg`
 * [X] move `favicon.ico` to `public/favicon.ico`
 * [X] change content of `favicon.ico`
-* [] add `TODO.md`
-* [] add color `Malto` (https://color.adobe.com/zh/search?q=yellow#)
+* [X] add color `Malto` (https://color.adobe.com/zh/search?q=yellow#)
 * [] install `shadcn-ui`
 * [] add dark-mode
 * [] add `Navbar`

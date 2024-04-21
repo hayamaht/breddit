@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Color Theme Swatches in Hex */
+.Malto-1-hex { color: #F2CB05; }
+.Malto-2-hex { color: #F2B705; }
+.Malto-3-hex { color: #F28705; }
+.Malto-4-hex { color: #591202; }
+.Malto-5-hex { color: #F21D1D; }
+
+/* Color Theme Swatches in RGBA */
+.Malto-1-rgba { color: rgba(242, 202, 4, 1); }
+.Malto-2-rgba { color: rgba(242, 182, 4, 1); }
+.Malto-3-rgba { color: rgba(242, 135, 4, 1); }
+.Malto-4-rgba { color: rgba(89, 17, 1, 1); }
+.Malto-5-rgba { color: rgba(242, 29, 29, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Malto-1-hsla { color: hsla(50, 96, 48, 1); }
+.Malto-2-hsla { color: hsla(45, 96, 48, 1); }
+.Malto-3-hsla { color: hsla(33, 96, 48, 1); }
+.Malto-4-hsla { color: hsla(11, 96, 17, 1); }
+.Malto-5-hsla { color: hsla(0, 89, 53, 1); }
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
