@@ -1,6 +1,6 @@
 # @TODOs List
 
-* [ ] move `globals.css` to `@/styles/globals.css`
+* [X] move `globals.css` to `@/styles/globals.css`
 * [X] delete `vercel.svg`, `next.svg`
 * [ ] move `favicon.ico` to `public/favicon.ico`
 * [ ] change content of `favicon.ico`
