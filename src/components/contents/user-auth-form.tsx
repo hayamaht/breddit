@@ -1,5 +1,5 @@
 'use client'
-
+import { toast } from "sonner"
 import { cn } from '@/lib/utils'
 import { HTMLAttributes, useState } from 'react'
 import { Button } from '../ui/button'
@@ -16,13 +16,15 @@ export default function UserAuthForm({
   const loginWith = async (provider: 'google' | 'github') => {
     const setLoading = provider === 'google' ? setIsLoadingGoogle : setIsLoadingGithub
 
+    toast(`Logging in with ${provider}...`)
+
     setLoading(true)
     try {
       // await signIn(provider)
     } catch (error) {
-      // toast.error('Error', {
-      //   description: `There was an error logging in with ${provider}`,
-      // })
+      toast.error('Error', {
+        description: `There was an error logging in with ${provider}`,
+      })
     } finally {
       setLoading(false)
     }
