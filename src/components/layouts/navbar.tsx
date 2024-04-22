@@ -3,9 +3,11 @@ import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { ModeToggle } from './mode-toggle'
 import { Icons } from './icons'
+import UserAccountNav from '../contents/user-account-nav'
+import { getAuthSession } from '@/lib/auth'
 
 export default async function Navbar() {
-  // const session = await getAuthSession()
+  const session = await getAuthSession()
 
   return (
     <div className='fixed top-0 inset-x-0 h-fit bg-primary z-50 
@@ -22,16 +24,16 @@ export default async function Navbar() {
 
         <div className='flex items-center space-x-2'>
           <ModeToggle />
-          {/* {session ? (
+          {session ? (
             <UserAccountNav user={session.user} />
-          ) : ( */}
+          ) : (
             <Link href='/sign-in' className={cn(
               'bg-orange-700',
               buttonVariants({ size: 'sm', variant: 'primary' })
             )}>
               Sign In
             </Link>
-          {/* )} */}
+          )}
         </div>
       </div>
     </div>
