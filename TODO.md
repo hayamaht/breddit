@@ -33,4 +33,6 @@
 * [X] edit home page
 * [ ] add i18n
 * [X] add route `/r/create/page.tsx`
-  
+* [ ] add `tanstack/react-query`
+  * [X] add package `@tanstack/react-query`
+  * [ ] add `QueryClientProvider`
