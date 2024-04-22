@@ -40,3 +40,24 @@ export async function fetchFirstSubreddit(name:string) {
     console.error(`%>> Error: ${error}`)
   }
 }
+
+export async function fetchManyPosts() {
+  try {
+    const data = await db.post.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        votes: true,
+        author: true,
+        comments: true,
+        subreddit: true,
+      },
+      take: INFINITE_SCROLL_PAGINATION_RESULTS, // 4 to demonstrate infinite scroll, should be higher in production
+    })
+
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+  }
+}
