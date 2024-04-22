@@ -26,7 +26,7 @@ export default async function Navbar() {
           ) : ( */}
             <Link href='/sign-in' className={cn(
               'bg-orange-700',
-              // buttonVariants({ size: 'sm', variant: 'primary' })
+              buttonVariants({ size: 'sm', variant: 'primary' })
             )}>
               Sign In
             </Link>
