@@ -8,12 +8,23 @@
 * [X] install `shadcn-ui`
 * [X] add dark-mode
 * [X] add `Navbar`
-* [] add `sign-in` component
-* [] install `next-auth`
-* [] add `.env`
+* [X] add `sign-in` component
+* [X] add `sonner` toast
+* [X] add `user-account-form` component
+  * [X] install `next-auth`
+  * [X] add package `prisma`
+  * [X] add package `@prisma/client`
+  * [X] add `api/auth/[...nextauth]/route.tsx`
+  * [x] add `lib/auth.ts`
+  * [X] add `types/next-auth.d.ts`
+  * [X] npx prisma init
+  * [X] add `.env`
+  * [x] npx prisma migrate dev --name init
+  * [X] npx prisma generate
+  * [X] npx prisma db push
+* [X] add `user-account-nav`
+  * [X] add `user-avatar` component
+  * [X] add package `avatar`
+  * [X] add package `tooltip`
 * [ ] add form page
-* [] install prisma:
-  * [] npx prisma migrate dev --name init
-  * [] npx prisma generate
-  * [] npx prisma db push
-
+  

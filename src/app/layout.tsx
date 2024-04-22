@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme";
 import Navbar from "@/components/layouts/navbar";
+import { Toaster } from "@/components/ui/sonner";
 
 const font = Font({
   weight: ["100" , "300" , "400" , "500" , "700" , "900"],
@@ -43,7 +44,7 @@ export default function RootLayout({
           <div className="container h-full pt-20 font-sans ">
             {children}
           </div>
-
+          <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
     </html>
