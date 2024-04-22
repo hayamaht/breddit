@@ -6,6 +6,7 @@ import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownM
 import Link from "next/link"
 import { signOut } from "next-auth/react"
 import Image from "next/image"
+import UserAvatar from "./user-avatar"
 
 interface UserAccountNavProps {
   user: User
@@ -15,12 +16,10 @@ export default function UserAccountNav({ user }: UserAccountNavProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        {user.name}
-        {/* {user.image ? <Image src={user.image} /> : null} */}
-        {/* <UserAvatar 
+        <UserAvatar 
           user={user} 
           className='h-8 w-8' 
-        /> */}
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <div className='gap-3 p-2'>

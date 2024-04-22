@@ -22,6 +22,9 @@
   * [x] npx prisma migrate dev --name init
   * [X] npx prisma generate
   * [X] npx prisma db push
-* [ ] add `user-account-nav`
+* [X] add `user-account-nav`
+  * [X] add `user-avatar` component
+  * [X] add package `avatar`
+  * [X] add package `tooltip`
 * [ ] add form page
   
