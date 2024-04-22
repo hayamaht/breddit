@@ -9,9 +9,10 @@
 * [X] add dark-mode
 * [X] add `Navbar`
 * [X] add `sign-in` component
-* [ ] add `user-account-form` component
 * [X] add `sonner` toast
-* [] install `next-auth`
+* [ ] add `user-account-form` component
+  * [X] install `next-auth`
+  * [ ] 
 * [] add `.env`
 * [ ] add form page
 * [] install prisma:

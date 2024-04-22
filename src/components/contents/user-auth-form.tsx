@@ -20,6 +20,7 @@ export default function UserAuthForm({
 
     setLoading(true)
     try {
+      // TODO: use next-auth signIn()
       // await signIn(provider)
     } catch (error) {
       toast.error('Error', {
