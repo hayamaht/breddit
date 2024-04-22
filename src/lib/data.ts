@@ -1,6 +1,21 @@
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from "@/config";
 import { db } from "./db";
 
+export async function fetchCountSubscription(slug: string) {
+  try {
+    const data = await db.subscription.count({
+      where: {
+        subreddit: {
+          name: slug,
+        },
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return 0
+  }
+}
 
 export async function fetchFirstSubredditName(name:string) {
   try {
@@ -42,27 +57,7 @@ export async function fetchFirstSubreddit(name:string) {
   }
 }
 
-export async function fetchManyPosts() {
-  try {
-    const data = await db.post.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        votes: true,
-        author: true,
-        comments: true,
-        subreddit: true,
-      },
-      take: INFINITE_SCROLL_PAGINATION_RESULTS, // 4 to demonstrate infinite scroll, should be higher in production
-    })
 
-    return data
-  } catch (error) {
-    console.error(`%>> Error: ${error}`)
-    return []
-  }
-}
 
 export async function fetchManySubscriptionBy(userId: string) {
   try {
@@ -78,6 +73,45 @@ export async function fetchManySubscriptionBy(userId: string) {
   } catch (error) {
     console.error(`%>> Error: ${error}`)
     return []
+  }
+}
+
+export async function fetchFirstSubscriptionBy(slug:string, userId: string) {
+  try {
+    const data = await db.subscription.findFirst({
+      where: {
+        subreddit: {
+          name: slug,
+        },
+        user: {
+          id: userId,
+        },
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return null
+  }
+}
+
+export async function fetchFirstSubredditWithPosts(slug:string) {
+  try {
+    const data = await db.subreddit.findFirst({
+      where: { name: slug },
+      include: {
+        posts: {
+          include: {
+            author: true,
+            votes: true,
+          },
+        },
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return null
   }
 }
 
@@ -104,6 +138,28 @@ export async function fetchManyPostsWithSubreddit(subscriptions: any) {
         subreddit: true,
       },
       take: INFINITE_SCROLL_PAGINATION_RESULTS,
+    })
+
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return []
+  }
+}
+
+export async function fetchManyPosts() {
+  try {
+    const data = await db.post.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        votes: true,
+        author: true,
+        comments: true,
+        subreddit: true,
+      },
+      take: INFINITE_SCROLL_PAGINATION_RESULTS, // 4 to demonstrate infinite scroll, should be higher in production
     })
 
     return data

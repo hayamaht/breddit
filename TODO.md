@@ -38,3 +38,4 @@
   * [X] add `QueryClientProvider`
 * [X] add `api/subreddit/route.ts`
   * [X] add package `zod`
+* [ ] add layout of `[slug]`
