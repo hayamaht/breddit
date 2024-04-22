@@ -30,5 +30,7 @@
 * [X] add `@auth-model` for Parallel Routes 
   * [X] add `@authModal/(.)sign-in/page.tsx`
   * [X] add `close-modal` component
-* [ ] add form page
+* [X] edit home page
+* [ ] add i18n
+* [X] add route `/r/create/page.tsx`
   
