@@ -5,28 +5,40 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useMutation } from '@tanstack/react-query'
+import { CreateSubredditPayload } from "@/lib/validators/subreddit"
+import { toast } from "sonner"
 
 export default function CreatePostPage() {
   const router = useRouter()
   const [input, setInput] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
 
-  // const { mutate: createCommunity, isPending, isSuccess } = useMutation({
-  //   mutationFn: async () => {
-  //     const data = await fetch('/api/subreddit', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         name: input,
-  //       }),
-  //     })
-  //     return data.json()
-  //   },
-  //   onSuccess: (data) => {
-  //     router.push(`/r/${data}`)
-  //   },
-  //   onError: (error) => {
-  //     console.log(`Error: ${error}`)
-  //   },
-  // })
+  const { mutate: createCommunity, isPending, } = useMutation({
+    mutationFn: async () => {
+      setLoading(true)
+      const payload: CreateSubredditPayload = {
+        name: input,
+      }
+      
+      const data = await fetch('/api/subreddit', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      })
+
+      if (!data.ok) {
+        toast.error('Failed to create community')
+        throw new Error('Failed to create community')
+      }
+      setLoading(false)
+      return data.text()
+    },
+    onSuccess: (data) => {
+      router.push(`/r/${data}`)
+    },
+    onError: (error) => {
+      console.log(`Error: ${error}`)
+    },
+  })
   
   return (
     <div className='container flex items-center h-full max-w-xl'>
@@ -56,15 +68,15 @@ export default function CreatePostPage() {
 
         <div className='flex justify-end gap-4'>
           <Button
-            // disabled={isPending && isSuccess}
+            disabled={isPending}
             variant='outline'
             onClick={() => router.back()}>
             Cancel
           </Button>
           <Button
-            // isLoading={isPending && isSuccess}
-            disabled={input.length === 0}
-            // onClick={() => createCommunity()}
+            isLoading={loading}
+            disabled={loading || input.length === 0}
+            onClick={() => createCommunity()}
           >
             Create Community
           </Button>
