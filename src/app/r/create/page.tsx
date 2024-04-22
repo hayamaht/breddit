@@ -41,7 +41,7 @@ export default function CreatePostPage() {
   })
   
   return (
-    <div className='container flex items-center h-full max-w-xl'>
+    <div className='sm:container flex items-center max-w-xl min-w-72'>
       <div className='relative bg-background border border-border w-full h-fit p-4 rounded-lg space-y-6'>
         <div className='flex justify-between items-center'>
           <h1 className='text-xl font-semibold'>Create a Community</h1>
