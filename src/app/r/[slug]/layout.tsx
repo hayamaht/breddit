@@ -37,10 +37,10 @@ export default async function SlugLayout({
 
           {/* info sidebar */}
           <div className='overflow-hidden h-fit rounded-lg border border-border order-first md:order-last'>
-            <div className='px-6 py-4 bg-primary/50'>
+            <div className='px-6 py-4 bg-primary/70'>
               <p className='font-semibold py-3'>About r/{subreddit.name}</p>
             </div>
-            <div className='divide-y divide-primary px-6 py-4 text-sm leading-6 bg-primary/5'>
+            <div className='divide-y divide-primary px-6 py-4 text-sm leading-6 bg-primary/30'>
               <div className='flex justify-between gap-x-4 py-3'>
                 <div className='text-foreground'>Created</div>
                 <div className='text-primary-foreground'>
@@ -63,14 +63,14 @@ export default async function SlugLayout({
 
               {!isCreator ? (
                 <SubscribeLeaveToggle
-                //   isSubscribed={isSubscribed}
-                //   subredditId={subreddit.id}
-                //   subredditName={subreddit.name}
+                  isSubscribed={isSubscribed}
+                  subredditId={subreddit.id}
+                  subredditName={subreddit.name}
                 />
               ) : null}
               <Link
                 className={buttonVariants({
-                  variant: 'primary',
+                  variant: 'default',
                   className: 'w-full',
                 })}
                 href={`r/${slug}/submit`}>
