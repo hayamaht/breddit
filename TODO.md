@@ -9,6 +9,7 @@
 * [X] add dark-mode
 * [X] add `Navbar`
 * [X] add `sign-in` component
+  * [X] check google/github redirect while sign-in
 * [X] add `sonner` toast
 * [X] add `user-account-form` component
   * [X] install `next-auth`
