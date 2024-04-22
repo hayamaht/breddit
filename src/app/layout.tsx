@@ -30,7 +30,9 @@ export default function RootLayout({
       <body className={cn(
         'min-h-screen bg-background/5 text-foreground antialiased',
         font.variable, brand.variable
-      )}>{children}</body>
+      )}>
+        {children}
+      </body>
     </html>
   );
 }

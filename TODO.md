@@ -5,7 +5,7 @@
 * [X] move `favicon.ico` to `public/favicon.ico`
 * [X] change content of `favicon.ico`
 * [X] add color `Malto` (https://color.adobe.com/zh/search?q=yellow#)
-* [] install `shadcn-ui`
+* [X] install `shadcn-ui`
 * [] add dark-mode
 * [] add `Navbar`
 * [] add `sign-in` component
