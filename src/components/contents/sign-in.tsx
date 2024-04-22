@@ -1,6 +1,7 @@
 
 import Link from 'next/link'
 import { Icons } from '../layouts/icons'
+import UserAuthForm from './user-auth-form'
 
 export default function SignIn() {
   return (
@@ -14,8 +15,7 @@ export default function SignIn() {
         </p>
       </div>
 
-      {/* TODO: add user-account-form */}
-      {/* <UserAuthForm /> */}
+      <UserAuthForm />
       
       <p className='px-8 text-center text-sm text-muted-foreground'>
         New to <span className='font-brand'>Breddit</span>?{' '}

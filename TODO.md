@@ -9,6 +9,8 @@
 * [X] add dark-mode
 * [X] add `Navbar`
 * [X] add `sign-in` component
+* [ ] add `user-account-form` component
+* [ ] add `sonner` toast
 * [] install `next-auth`
 * [] add `.env`
 * [ ] add form page
