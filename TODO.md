@@ -12,11 +12,15 @@
 * [X] add `sonner` toast
 * [ ] add `user-account-form` component
   * [X] install `next-auth`
-  * [ ] 
-* [] add `.env`
+  * [X] add package `prisma`
+  * [X] add package `@prisma/client`
+  * [X] add `api/auth/[...nextauth]/route.tsx`
+  * [x] add `lib/auth.ts`
+  * [X] add `types/next-auth.d.ts`
+  * [X] npx prisma init
+  * [X] add `.env`
+  * [x] npx prisma migrate dev --name init
+  * [X] npx prisma generate
+  * [X] npx prisma db push
 * [ ] add form page
-* [] install prisma:
-  * [] npx prisma migrate dev --name init
-  * [] npx prisma generate
-  * [] npx prisma db push
-
+  

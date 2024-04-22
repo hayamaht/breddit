@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { HTMLAttributes, useState } from 'react'
 import { Button } from '../ui/button'
 import { Icons } from '../layouts/icons'
+import { signIn } from "next-auth/react"
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -20,8 +21,7 @@ export default function UserAuthForm({
 
     setLoading(true)
     try {
-      // TODO: use next-auth signIn()
-      // await signIn(provider)
+      await signIn(provider)
     } catch (error) {
       toast.error('Error', {
         description: `There was an error logging in with ${provider}`,
