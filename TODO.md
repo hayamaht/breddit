@@ -27,8 +27,8 @@
   * [X] add `user-avatar` component
   * [X] add package `avatar`
   * [X] add package `tooltip`
-* [ ] add `@auth-model` for Intercepting Routes
-  * [ ] aa
-  * [ ] bb
+* [X] add `@auth-model` for Parallel Routes 
+  * [X] add `@authModal/(.)sign-in/page.tsx`
+  * [X] add `close-modal` component
 * [ ] add form page
   

@@ -24,8 +24,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  authModal,
   children,
 }: Readonly<{
+  authModal: React.ReactNode;
   children: React.ReactNode;
 }>) {
   return (
@@ -41,6 +43,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
+
+          <div>{authModal}</div>
           <div className="container h-full pt-20 font-sans ">
             {children}
           </div>
