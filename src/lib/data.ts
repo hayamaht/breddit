@@ -38,6 +38,7 @@ export async function fetchFirstSubreddit(name:string) {
     return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
+    return null
   }
 }
 
@@ -59,5 +60,55 @@ export async function fetchManyPosts() {
     return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
+    return []
+  }
+}
+
+export async function fetchManySubscriptionBy(userId: string) {
+  try {
+    const data = await db.subscription.findMany({
+      where: {
+        userId
+      },
+      include: {
+        subreddit: true,
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return []
+  }
+}
+
+export async function fetchManyPostsWithSubreddit(subscriptions: any) {
+  // TODO: change `any`
+  console.log(subscriptions)
+  
+  try {
+    const data = await db.post.findMany({
+      where: {
+        subreddit: {
+          name: {
+            in: subscriptions.map((sub: any) => sub.subreddit.name),
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        votes: true,
+        author: true,
+        comments: true,
+        subreddit: true,
+      },
+      take: INFINITE_SCROLL_PAGINATION_RESULTS,
+    })
+
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return []
   }
 }
