@@ -10,7 +10,7 @@
 * [X] add `Navbar`
 * [X] add `sign-in` component
 * [X] add `sonner` toast
-* [ ] add `user-account-form` component
+* [X] add `user-account-form` component
   * [X] install `next-auth`
   * [X] add package `prisma`
   * [X] add package `@prisma/client`
@@ -22,5 +22,6 @@
   * [x] npx prisma migrate dev --name init
   * [X] npx prisma generate
   * [X] npx prisma db push
+* [ ] add `user-account-nav`
 * [ ] add form page
   
