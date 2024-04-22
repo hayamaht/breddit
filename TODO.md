@@ -27,5 +27,8 @@
   * [X] add `user-avatar` component
   * [X] add package `avatar`
   * [X] add package `tooltip`
+* [ ] add `@auth-model` for Intercepting Routes
+  * [ ] aa
+  * [ ] bb
 * [ ] add form page
   
