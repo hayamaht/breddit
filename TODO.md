@@ -8,7 +8,7 @@
 * [X] install `shadcn-ui`
 * [X] add dark-mode
 * [X] add `Navbar`
-* [] add `sign-in` component
+* [X] add `sign-in` component
 * [] install `next-auth`
 * [] add `.env`
 * [ ] add form page

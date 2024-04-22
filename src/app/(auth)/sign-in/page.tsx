@@ -1,4 +1,4 @@
-// import SignIn from '@/components/sign-in'
+import SignIn from '@/components/contents/sign-in'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { ChevronLeftIcon } from 'lucide-react'
@@ -18,7 +18,7 @@ export default function SignInPage() {
           Home
         </Link>
 
-        {/* <SignIn /> */}
+        <SignIn />
       </div>
     </div>
   )
