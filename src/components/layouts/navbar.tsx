@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { ModeToggle } from './mode-toggle'
+import { Icons } from './icons'
 
 export default async function Navbar() {
   // const session = await getAuthSession()
@@ -12,7 +13,7 @@ export default async function Navbar() {
     >
       <div className='container flex items-center justify-between gap-2 '>
         <Link href='/' className='flex gap-1 items-center'>
-          {/* <Icons.logo className='w-8 h-8 sm:w-6 sm:h-6' /> */}
+          <Icons.logo className='w-8 h-8 sm:w-6 sm:h-6' />
           <p className='hidden text-white font-brand text-sm font-bold md:block'>Breddit</p>
         </Link>
 

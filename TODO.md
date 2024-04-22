@@ -7,7 +7,7 @@
 * [X] add color `Malto` (https://color.adobe.com/zh/search?q=yellow#)
 * [X] install `shadcn-ui`
 * [X] add dark-mode
-* [] add `Navbar`
+* [X] add `Navbar`
 * [] add `sign-in` component
 * [] install `next-auth`
 * [] add `.env`
