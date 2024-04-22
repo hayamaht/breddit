@@ -6,7 +6,7 @@
 * [X] change content of `favicon.ico`
 * [X] add color `Malto` (https://color.adobe.com/zh/search?q=yellow#)
 * [X] install `shadcn-ui`
-* [] add dark-mode
+* [X] add dark-mode
 * [] add `Navbar`
 * [] add `sign-in` component
 * [] install `next-auth`
