@@ -35,4 +35,6 @@
 * [X] add route `/r/create/page.tsx`
 * [ ] add `tanstack/react-query`
   * [X] add package `@tanstack/react-query`
-  * [ ] add `QueryClientProvider`
+  * [X] add `QueryClientProvider`
+* [X] add `api/subreddit/route.ts`
+  * [X] add package `zod`
