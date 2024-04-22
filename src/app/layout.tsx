@@ -3,6 +3,7 @@ import { Agbalumo as FontBrand, Roboto as Font } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme";
+import Navbar from "@/components/layouts/navbar";
 
 const font = Font({
   weight: ["100" , "300" , "400" , "500" , "700" , "900"],
@@ -33,13 +34,17 @@ export default function RootLayout({
         font.variable, brand.variable
       )}>
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <div className="container h-full pt-20 font-sans ">
             {children}
-          </ThemeProvider>
+          </div>
+
+        </ThemeProvider>
       </body>
     </html>
   );
