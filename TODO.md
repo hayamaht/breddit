@@ -9,6 +9,7 @@
 * [X] add dark-mode
 * [X] add `Navbar`
 * [X] add `sign-in` component
+  * [X] check google/github redirect while sign-in
 * [X] add `sonner` toast
 * [X] add `user-account-form` component
   * [X] install `next-auth`
@@ -26,5 +27,8 @@
   * [X] add `user-avatar` component
   * [X] add package `avatar`
   * [X] add package `tooltip`
+* [X] add `@auth-model` for Parallel Routes 
+  * [X] add `@authModal/(.)sign-in/page.tsx`
+  * [X] add `close-modal` component
 * [ ] add form page
   
