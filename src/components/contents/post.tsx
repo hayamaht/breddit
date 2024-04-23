@@ -5,6 +5,7 @@ import type { Post, User, Vote } from "@prisma/client"
 import { MessageSquareIcon } from "lucide-react"
 import Link from "next/link"
 import { useRef } from "react"
+import EditorOutput from "./editor-output"
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -62,11 +63,10 @@ export default function Post({
           <div
             className='relative text-sm max-h-40 w-full overflow-clip'
             ref={pRef}>
-            {/* TODO: add editor-output/}
-            {/* <EditorOutput content={post.content} /> */}
+            <EditorOutput content={post.content} />
             {pRef.current?.clientHeight === 160 ? (
               // blur bottom if content is too long
-              <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent'></div>
+              <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-background to-transparent'></div>
             ) : null}
           </div>
         </div>
