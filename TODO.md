@@ -41,4 +41,5 @@
 * [X] add layout of `[slug]`
 * [X] add `api/subreddit/subscribe/route.ts`
 * [X] add `api/subreddit/unsubscribe/route.ts`
-* [ ] add `/r/[slug]/submit`
+* [X] add `/r/[slug]/submit`
+* [ ] add `api/subreddit/post/create`

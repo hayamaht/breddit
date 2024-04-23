@@ -40,3 +40,23 @@ export async function deleteSubscribe(subredditId: string, userId: string) {
     console.error(`Database Error: ${error}`)
   }
 }
+
+export async function createPost(
+  title: string,
+  content: string,
+  subredditId: string, 
+  userId: string
+) {
+  try {
+    await db.post.create({
+      data: {
+        title,
+        content,
+        authorId: userId,
+        subredditId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}

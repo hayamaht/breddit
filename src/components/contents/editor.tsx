@@ -36,6 +36,7 @@ export default function Editor({
   const _titleRef = useRef<HTMLTextAreaElement>(null)
   const router = useRouter()
   const [isMounted, setIsMounted] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const pathname = usePathname()
 
   const { mutate: createPost } = useMutation({
@@ -44,6 +45,7 @@ export default function Editor({
       content,
       subredditId,
     }: PostCreationRequest) => {
+      setIsLoading(true)
       const payload: PostCreationRequest = { title, content, subredditId }
       const req = await fetch('/api/subreddit/post/create', {
         method: 'POST',
@@ -57,6 +59,7 @@ export default function Editor({
       })
     },
     onSuccess: () => {
+      setIsLoading(false)
       // turn pathname /r/my-community/submit into /r/my-community
       const newPathname = pathname.split('/').slice(0, -1).join('/')
       router.push(newPathname)
