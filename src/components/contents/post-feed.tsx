@@ -60,7 +60,7 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts
   
   return (
-    <div className='flex flex-col col-span-2 space-y-6'>
+    <ul  className='flex flex-col col-span-2 space-y-6'>
       {posts.map((post, index) => {
         const votesAmt = post.votes.reduce((acc, vote) => {
           if (vote.type === 'UP') return acc + 1
@@ -74,7 +74,7 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
 
         if (index === posts.length - 1) {
           return (
-            <div ref={ref} key={post.id}>
+            <li ref={ref} key={post.id}>
               <Post
                 post={post}
                 commentAmt={post.comments.length}
@@ -82,25 +82,28 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
                 votesAmt={votesAmt}
                 currentVote={currentVote}
               />
-            </div>
+            </li>
           )
         }
 
-        return <Post 
-            key={post.id}
-            post={post}
-            commentAmt={post.comments.length}
-            subredditName={post.subreddit.name}
-            votesAmt={votesAmt}
-            currentVote={currentVote}
-          />
+        return (
+          <li key={post.id}>
+            <Post 
+              post={post}
+              commentAmt={post.comments.length}
+              subredditName={post.subreddit.name}
+              votesAmt={votesAmt}
+              currentVote={currentVote}
+            />
+          </li>
+        )
       })}
 
       {isFetchingNextPage && (
-        <div className='flex justify-center'>
+        <li className='flex justify-center'>
           <Loader2Icon className='w-6 h-6 text-zinc-500 animate-spin' />
-        </div>
+        </li>
       )}
-    </div>
+    </ul>
   )
 }
