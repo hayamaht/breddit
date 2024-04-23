@@ -6,6 +6,7 @@ import { MessageSquareIcon } from "lucide-react"
 import Link from "next/link"
 import { useRef } from "react"
 import EditorOutput from "./editor-output"
+import PostVoteClient from "./post-vote-client"
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -22,9 +23,9 @@ interface PostProps {
 
 export default function Post({
   post,
-  votesAmt,
+  votesAmt: _votesAmt,
+  currentVote: _currentVote,
   subredditName,
-  currentVote,
   commentAmt
 }: PostProps) {
   const pRef = useRef<HTMLParagraphElement>(null)
@@ -32,12 +33,11 @@ export default function Post({
   return (
     <div className='rounded-md bg-background/5 border border-border shadow'>
       <div className='px-6 py-4 flex justify-between'>
-        {/* TODO: add post-vote-client */}
-        {/* <PostVoteClient
+        <PostVoteClient
           postId={post.id}
           initialVotesAmt={_votesAmt}
           initialVote={_currentVote?.type}
-        /> */}
+        />
 
         <div className='w-0 flex-1'>
           <div className='max-h-40 mt-1 text-xs text-gray-500'>
