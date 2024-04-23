@@ -12,6 +12,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { Button } from '../ui/button'
+import { uploadFiles } from '@/lib/uploadthing'
 
 type FormData = z.infer<typeof PostValidator>
 
@@ -106,17 +107,17 @@ export default function Editor({
             config: {
               uploader: {
                 async uploadByFile(file: File) {
-                  // TODO: add upload image
-                  // ---
-                  // // upload to uploadthing
-                  // const [res] = await uploadFiles([file], 'imageUploader')
+                  // upload to uploadthing
+                  const [res] = await uploadFiles('imageUploader', {
+                    files: [file],
+                  })
 
-                  // return {
-                  //   success: 1,
-                  //   file: {
-                  //     url: res.fileUrl,
-                  //   },
-                  // }
+                  return {
+                    success: 1,
+                    file: {
+                      url: res.url,
+                    },
+                  }
                 },
               },
             },
