@@ -95,6 +95,20 @@ export async function fetchFirstSubscriptionBy(slug:string, userId: string) {
   }
 }
 
+export async function fetchFirstSubscriptionWith(subredditId: string, userId: string) {
+  try {
+    const data = await db.subscription.findFirst({
+      where: {
+        subredditId,
+        userId,
+      },
+    })
+    return data
+  } catch (error) {
+    
+  }
+}
+
 export async function fetchFirstSubredditWithPosts(slug:string) {
   try {
     const data = await db.subreddit.findFirst({

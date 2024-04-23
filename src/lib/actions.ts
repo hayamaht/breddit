@@ -26,3 +26,16 @@ export async function createSubscription(subredditId:string, userId: string) {
     console.error(`%>> Error: ${error}`)
   }
 }
+
+export async function createSubscribe(subredditId: string, userId: string) {
+  try {
+    await db.subscription.create({
+      data: {
+        subredditId,
+        userId: userId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
