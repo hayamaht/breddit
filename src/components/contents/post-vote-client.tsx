@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
 import { toast } from 'sonner'
 import { PostVoteRequest } from '@/lib/validators/vote'
+import { useCustomToasts } from '@/hooks/use-custom-toasts'
 
 export default function PostVoteClient({
   postId,
@@ -23,6 +24,7 @@ export default function PostVoteClient({
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt)
   const [currentVote, setCurrentVote] = useState(initialVote)
   const prevVote = usePrevious(currentVote)
+  const { loginToast } = useCustomToasts()
 
   // ensure sync with server
   useEffect(() => {
@@ -47,7 +49,7 @@ export default function PostVoteClient({
 
       if (err instanceof AxiosError) {
         if (err.response?.status === 401) {
-          // return loginToast()
+          return loginToast()
         }
       }
 
