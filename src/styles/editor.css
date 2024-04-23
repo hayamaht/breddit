@@ -8,8 +8,9 @@
 .dark .cdx-button,
 .dark .ce-popover,
 .dark .ce-toolbar__plus:hover {
-  background: theme('colors.popover.DEFAULT');
+  /* background: theme('colors.popover.DEFAULT'); */
   color: inherit;
+  /* theme('colors.primary.DEFAULT'); */
   border-color: theme('colors.border');
 }
 
