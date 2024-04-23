@@ -120,6 +120,7 @@ export async function fetchFirstSubredditWithPosts(slug:string) {
     return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
+    return null
   }
 }
 
