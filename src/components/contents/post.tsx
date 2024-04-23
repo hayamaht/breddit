@@ -55,7 +55,7 @@ export default function Post({
             {formatTimeToNow(new Date(post.createdAt))}
           </div>
           <a href={`/r/${subredditName}/post/${post.id}`}>
-            <h1 className='text-lg font-semibold py-2 leading-6 text-foreground'>
+            <h1 className='text-lg font-semibold py-2 leading-6 text-foreground hover:underline hover:text-primary hover:underline-offset-1'>
               {post.title}
             </h1>
           </a>

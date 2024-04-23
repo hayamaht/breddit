@@ -189,3 +189,20 @@ export async function fetchManyPosts() {
     return []
   }
 }
+
+export async function fetchFirstPostWithId(postId:string) {
+  try {
+    const data = await db.post.findFirst({
+      where: {
+        id: postId,
+      },
+      include: {
+        votes: true,
+        author: true,
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+  }
+}
