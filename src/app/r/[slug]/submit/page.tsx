@@ -1,5 +1,6 @@
+import Editor from '@/components/contents/editor'
 import { Button } from '@/components/ui/button'
-import { fetchFirstSubredditName } from '@/lib/data'
+import { fetchFirstSubredditId, fetchFirstSubredditName } from '@/lib/data'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -11,9 +12,9 @@ interface SubmitPageProps {
 
 export default async function SubmitPage({ params }: SubmitPageProps) {
   const slug = params.slug
-  const subreddit = await fetchFirstSubredditName(slug)
+  const subredditId = await fetchFirstSubredditId(slug)
 
-  if (!subreddit) {
+  if (!subredditId) {
     return notFound()
   }
 
@@ -26,13 +27,13 @@ export default async function SubmitPage({ params }: SubmitPageProps) {
             Create Post
           </h3>
           <p className='ml-2 mt-1 truncate text-sm text-gray-500'>
-            in r/{params.slug}
+            in r/{slug}
           </p>
         </div>
       </div>
 
       {/* form */}
-      {/* <Editor subredditId={subreddit.id} /> */}
+      <Editor subredditId={subredditId} />
 
       <div className='w-full flex justify-end'>
         <Button type='submit' className='w-full' form='subreddit-post-form'>

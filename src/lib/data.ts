@@ -18,13 +18,25 @@ export async function fetchCountSubscription(slug: string) {
 }
 
 export async function fetchFirstSubredditName(name:string) {
+  const sub = await _getFirstSubreddit(name)
+  if (!sub) return undefined
+  return sub.name
+}
+
+export async function fetchFirstSubredditId(name:string) {
+  const sub = await _getFirstSubreddit(name)
+  if (!sub) return undefined
+  return sub.id
+}
+
+async function _getFirstSubreddit(name:string) {
   try {
-    const subredditExists = await db.subreddit.findFirst({
+    const data = await db.subreddit.findFirst({
       where: {
         name,
       },
     })
-    return subredditExists ? subredditExists.name : null
+    return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
   }
