@@ -86,14 +86,17 @@ export default function SubscribeLeaveToggle({
   
   return isSubscribed ? (
     <Button
+      variant={'red'}
       className='w-full mt-1 mb-4'
       isLoading={isUnsubLoading}
       disabled={isUnsubLoading || loading}
-      onClick={() => unsubscribe()}>
+      onClick={() => unsubscribe()}
+    >
       Leave community
     </Button>
   ) : (
     <Button
+      variant={'red'}
       className='w-full mt-1 mb-4'
       isLoading={isSubLoading}
       disabled={isSubLoading || loading}

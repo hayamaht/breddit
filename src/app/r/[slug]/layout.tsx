@@ -27,7 +27,7 @@ export default async function SlugLayout({
   const isCreator = subreddit.creatorId === session?.user.id
 
   return (
-    <div className='sm:container max-w-7xl mx-auto h-full pt-12'>
+    <div className='sm:container max-w-7xl mx-auto h-full '>
       <div>
         {/* TODO: add to-feed-btn */}
         {/* <ToFeedButton /> */}
@@ -37,13 +37,13 @@ export default async function SlugLayout({
 
           {/* info sidebar */}
           <div className='overflow-hidden h-fit rounded-lg border border-border order-first md:order-last'>
-            <div className='px-6 py-4 bg-primary/70'>
+            <div className='px-6 py-4 bg-yellow-600'>
               <p className='font-semibold py-3'>About r/{subreddit.name}</p>
             </div>
-            <div className='divide-y divide-primary px-6 py-4 text-sm leading-6 bg-primary/30'>
+            <div className='divide-y divide-primary px-6 py-4 text-sm leading-6 bg-yellow-600/30'>
               <div className='flex justify-between gap-x-4 py-3'>
                 <div className='text-foreground'>Created</div>
-                <div className='text-primary-foreground'>
+                <div className='text-destructive text-md'>
                   <time dateTime={subreddit.createdAt.toDateString()}>
                     {format(subreddit.createdAt, 'MMMM d, yyyy')}
                   </time>
@@ -52,7 +52,7 @@ export default async function SlugLayout({
               <div className='flex justify-between gap-x-4 py-3'>
                 <div className='text-foreground'>Members</div>
                 <div className='flex items-start gap-x-2'>
-                  <div className='text-primary-foreground'>{memberCount}</div>
+                  <div className='text-destructive text-md'>{memberCount}</div>
                 </div>
               </div>
               {isCreator ? (
@@ -69,14 +69,15 @@ export default async function SlugLayout({
                 />
               ) : null}
               
-              <Link
+              {/* TODO: add create post btn */}
+              {/* <Link
                 className={buttonVariants({
-                  variant: 'default',
+                  variant: 'green',
                   className: 'w-full',
                 })}
                 href={`r/${slug}/submit`}>
                 Create Post
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
