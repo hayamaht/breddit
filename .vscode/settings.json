@@ -4,8 +4,10 @@
     "Autosize",
     "downvote",
     "editorjs",
+    "hset",
     "tanstack",
     "Unsub",
-    "upvote"
+    "upvote",
+    "UPVOTES"
   ]
 }

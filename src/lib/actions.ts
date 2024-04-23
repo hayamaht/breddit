@@ -1,3 +1,4 @@
+import { VoteType } from "@prisma/client"
 import { db } from "./db"
 
 export async function createSubreddit(name:string, userId: string) {
@@ -55,6 +56,53 @@ export async function createPost(
         authorId: userId,
         subredditId,
       },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function createVote(voteType: VoteType, postId: string, userId: string) {
+  try {
+    await db.vote.create({
+      data: {
+        type: voteType,
+        userId: userId,
+        postId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function updateVote(voteType: VoteType, postId: string, userId: string) {
+  try {
+    await db.vote.update({
+      where: {
+        userId_postId: {
+          postId,
+          userId,
+        },
+      },
+      data: {
+        type: voteType,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function deleteVote(postId: string, userId: string) {
+  try {
+    await db.vote.delete({
+      where: {
+        userId_postId: {
+          postId,
+          userId,
+        }
+      }
     })
   } catch (error) {
     console.error(`Database Error: ${error}`)

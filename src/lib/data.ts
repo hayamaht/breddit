@@ -206,3 +206,34 @@ export async function fetchFirstPostWithId(postId:string) {
     console.error(`%>> Error: ${error}`)
   }
 }
+
+export async function fetchFirstVoteWithId(postId:string, userId: string) {
+  try {
+    const data = await db.vote.findFirst({
+      where: {
+        userId,
+        postId,
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+  }
+}
+
+export async function fetchUniquePost(postId:string) {
+  try {
+    const post = await db.post.findUnique({
+      where: {
+        id: postId,
+      },
+      include: {
+        author: true,
+        votes: true,
+      },
+    })
+    return post
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+  }
+}
