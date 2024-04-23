@@ -24,6 +24,7 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
   const { data: session } = useSession()
   const userId = session?.user.id
   const fetchPosts = async ({ pageParam = 1 }) => {
+    // TODO: /api/post
     const query =
       `/api/posts?limit=${10}&page=${pageParam}` +
       (!!subredditName ? `&subredditName=${subredditName}` : '')
@@ -74,12 +75,25 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
         if (index === posts.length - 1) {
           return (
             <div ref={ref} key={post.id}>
-              <Post />
+              <Post
+                post={post}
+                commentAmt={post.comments.length}
+                subredditName={post.subreddit.name}
+                votesAmt={votesAmt}
+                currentVote={currentVote}
+              />
             </div>
           )
         }
 
-        return <Post key={post.id}/>
+        return <Post 
+            key={post.id}
+            post={post}
+            commentAmt={post.comments.length}
+            subredditName={post.subreddit.name}
+            votesAmt={votesAmt}
+            currentVote={currentVote}
+          />
       })}
 
       {isFetchingNextPage && (
