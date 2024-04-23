@@ -4,8 +4,9 @@ import { useRouter } from "next/navigation"
 import { Button } from "../ui/button"
 import { useMutation } from "@tanstack/react-query"
 import { SubscribeToSubredditPayload } from "@/lib/validators/subreddit"
-import { startTransition } from "react"
+import { startTransition, useState } from "react"
 import { toast } from "sonner"
+import { set } from "zod"
 
 interface SubscribeLeaveToggleProps {
   isSubscribed: boolean
@@ -19,9 +20,11 @@ export default function SubscribeLeaveToggle({
   subredditName
 }: SubscribeLeaveToggleProps) {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
   const { mutate: subscribe, isPending: isSubLoading } = useMutation({
     mutationFn: async () => {
+      setLoading(true)
       const payload: SubscribeToSubredditPayload = {
         subredditId,
       }
@@ -39,6 +42,7 @@ export default function SubscribeLeaveToggle({
     },
     onSuccess: () => {
       startTransition(() => {
+        setLoading(false)
         // Refresh the current route and fetch new data from the server without
         // losing client-side browser or React state.
         router.refresh()
@@ -51,6 +55,7 @@ export default function SubscribeLeaveToggle({
 
   const { mutate: unsubscribe, isPending: isUnsubLoading } = useMutation({
     mutationFn: async () => {
+      setLoading(true)
       const payload: SubscribeToSubredditPayload = {
         subredditId,
       }
@@ -68,6 +73,7 @@ export default function SubscribeLeaveToggle({
     },
     onSuccess: () => {
       startTransition(() => {
+        setLoading(false)
         // Refresh the current route and fetch new data from the server without
         // losing client-side browser or React state.
         router.refresh()
@@ -82,7 +88,7 @@ export default function SubscribeLeaveToggle({
     <Button
       className='w-full mt-1 mb-4'
       isLoading={isUnsubLoading}
-      disabled={isUnsubLoading}
+      disabled={isUnsubLoading || loading}
       onClick={() => unsubscribe()}>
       Leave community
     </Button>
@@ -90,7 +96,7 @@ export default function SubscribeLeaveToggle({
     <Button
       className='w-full mt-1 mb-4'
       isLoading={isSubLoading}
-      disabled={isSubLoading}
+      disabled={isSubLoading || loading}
       onClick={() => subscribe()}>
       Join to post
     </Button>

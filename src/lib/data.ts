@@ -27,7 +27,6 @@ export async function fetchFirstSubredditName(name:string) {
     return subredditExists ? subredditExists.name : null
   } catch (error) {
     console.error(`%>> Error: ${error}`)
-    return null
   }
 }
 
@@ -53,11 +52,8 @@ export async function fetchFirstSubreddit(name:string) {
     return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
-    return null
   }
 }
-
-
 
 export async function fetchManySubscriptionBy(userId: string) {
   try {
@@ -91,7 +87,6 @@ export async function fetchFirstSubscriptionBy(slug:string, userId: string) {
     return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
-    return null
   }
 }
 
@@ -105,7 +100,7 @@ export async function fetchFirstSubscriptionWith(subredditId: string, userId: st
     })
     return data
   } catch (error) {
-    
+    console.error(`%>> Error: ${error}`)
   }
 }
 
@@ -125,7 +120,6 @@ export async function fetchFirstSubredditWithPosts(slug:string) {
     return data
   } catch (error) {
     console.error(`%>> Error: ${error}`)
-    return null
   }
 }
 

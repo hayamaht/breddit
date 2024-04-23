@@ -68,6 +68,7 @@ export default async function SlugLayout({
                   subredditName={subreddit.name}
                 />
               ) : null}
+              
               <Link
                 className={buttonVariants({
                   variant: 'default',

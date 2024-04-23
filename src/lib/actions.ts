@@ -14,25 +14,26 @@ export async function createSubreddit(name:string, userId: string) {
   }
 }
 
-export async function createSubscription(subredditId:string, userId: string) {
-  try {
-    await db.subscription.create({
-      data: {
-        userId: userId,
-        subredditId
-      },
-    })
-  } catch (error) {
-    console.error(`%>> Error: ${error}`)
-  }
-}
 
 export async function createSubscribe(subredditId: string, userId: string) {
   try {
     await db.subscription.create({
       data: {
         subredditId,
-        userId: userId,
+        userId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function deleteSubscribe(subredditId: string, userId: string) {
+  try {
+    await db.subscription.deleteMany({
+      where: {
+        subredditId,
+        userId,
       },
     })
   } catch (error) {
