@@ -1,7 +1,6 @@
 import { createPost } from '@/lib/actions'
 import { getAuthSession } from '@/lib/auth'
-import { fetchCountSubscription, fetchFirstSubscriptionWith } from '@/lib/data'
-import { db } from '@/lib/db'
+import { fetchFirstSubscriptionWith } from '@/lib/data'
 import { PostValidator } from '@/lib/validators/post'
 import { z } from 'zod'
 

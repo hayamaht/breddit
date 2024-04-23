@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
+import { Button } from '../ui/button'
 
 type FormData = z.infer<typeof PostValidator>
 
@@ -51,7 +52,7 @@ export default function Editor({
         method: 'POST',
         body: JSON.stringify(payload),
       })
-      return req.json()
+      // return req.json()
     },
     onError: () => {
       toast('Something went wrong.', {
@@ -97,6 +98,7 @@ export default function Editor({
           linkTool: {
             class: LinkTool,
             config: {
+              // TODO: add /api/link
               endpoint: '/api/link',
             },
           },
@@ -167,6 +169,7 @@ export default function Editor({
   }, [isMounted, initializeEditor])
 
   async function onSubmit(data: FormData) {
+    setIsLoading(true)
     const blocks = await ref.current?.save()
 
     const payload: PostCreationRequest = {
@@ -185,11 +188,12 @@ export default function Editor({
   const { ref: titleRef, ...rest } = register('title')
 
   return (
-    <div className='w-full p-4 bg-background/5 rounded-lg border-2 border-border'>
-      <form 
-        onSubmit={handleSubmit(onSubmit)}
-        className='w-fit'
-      >
+    <form 
+      id='subreddit-post-form'
+      onSubmit={handleSubmit(onSubmit)}
+      className='w-fit space-y-2'
+    >
+      <div className='w-full p-4 bg-background/5 rounded-lg border-2 border-border '>
         <div className='prose prose-stone dark:prose-invert'>
           <TextareaAutosize
             ref={(e) => {
@@ -199,6 +203,7 @@ export default function Editor({
             }}
             {...rest}
             placeholder='Title'
+            disabled={isLoading}
             className='w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none'
           />
           <div id='editor' className='min-h-[500px]' />
@@ -210,7 +215,17 @@ export default function Editor({
             to open the command menu.
           </p>        
         </div>
-      </form>
-    </div>
+      </div>
+      
+      <Button 
+        type='submit' 
+        className='w-full' 
+        form='subreddit-post-form'
+        disabled={isLoading}
+        isLoading={isLoading}
+      >
+        Post
+      </Button>
+    </form>
   )
 }
