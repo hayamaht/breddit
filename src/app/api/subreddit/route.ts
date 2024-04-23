@@ -1,5 +1,5 @@
 import { getAuthSession } from '@/lib/auth'
-import { fetchFirstSubredditName } from "@/lib/fetchFirstSubredditName"
+import { fetchFirstSubredditName } from '@/lib/data'
 import { createSubreddit, createSubscribe, } from '@/lib/actions'
 import { SubredditValidator } from '@/lib/validators/subreddit'
 import { z } from 'zod'
