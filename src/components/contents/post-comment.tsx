@@ -13,6 +13,9 @@ import UserAvatar from './user-avatar'
 import { formatTimeToNow } from '@/lib/utils'
 import { Button } from '../ui/button'
 import { MessageSquareIcon } from 'lucide-react'
+import { Label } from '../ui/label'
+import { Textarea } from '../ui/textarea'
+import CommentVotes from './comment-votes'
 
 type ExtendedComment = Comment & {
   votes: CommentVote[]
@@ -57,6 +60,7 @@ export default function PostComment({
     },
     onSuccess: () => {
       router.refresh()
+      toast.success('Comment created successfully.')
       setIsReplying(false)
     },
   })
@@ -85,11 +89,11 @@ export default function PostComment({
       </p>
 
       <div className='flex gap-2 items-center'>
-        {/* <CommentVotes
+        <CommentVotes
           commentId={comment.id}
           votesAmt={votesAmt}
           currentVote={currentVote}
-        /> */}
+        />
 
         <Button
           onClick={() => {
@@ -102,6 +106,50 @@ export default function PostComment({
           Reply
         </Button>
       </div>
+
+      {isReplying ? (
+        <div className='grid w-full gap-1.5'>
+          <Label htmlFor='comment'>Your comment</Label>
+          <div className='mt-2'>
+            <Textarea
+              onFocus={(e) =>
+                e.currentTarget.setSelectionRange(
+                  e.currentTarget.value.length,
+                  e.currentTarget.value.length
+                )
+              }
+              autoFocus
+              id='comment'
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              rows={1}
+              placeholder='What are your thoughts?'
+            />
+
+            <div className='mt-2 flex justify-end gap-2'>
+              <Button
+                tabIndex={-1}
+                variant='secondary'
+                onClick={() => setIsReplying(false)}>
+                Cancel
+              </Button>
+              <Button
+                isLoading={isPending}
+                disabled={isPending || input.length === 0}
+                onClick={() => {
+                  if (!input) return
+                  postComment({
+                    postId,
+                    text: input,
+                    replyToId: comment.replyToId ?? comment.id, // default to top-level comment
+                  })
+                }}>
+                Post
+              </Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }

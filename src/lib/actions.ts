@@ -126,3 +126,57 @@ export async function createComment(
     console.error(`Database Error: ${error}`)
   }
 }
+
+
+export async function createCommentVote(
+  voteType: VoteType, commentId: string, userId: string
+) {
+  try {
+    await db.commentVote.create({
+      data: {
+        type: voteType,
+        userId,
+        commentId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function updateCommentVote(
+  voteType: VoteType, commentId: string, userId: string
+) {
+  try {
+    await db.commentVote.update({
+      where: {
+        userId_commentId: {
+          commentId,
+          userId,
+        },
+      },
+      data: {
+        type: voteType,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function deleteCommentVote(
+  commentId: string, userId: string
+) {
+  try {
+    await db.commentVote.delete({
+      where: {
+        userId_commentId: {
+          commentId,
+          userId,
+        },
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
