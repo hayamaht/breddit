@@ -5,6 +5,7 @@ import { ModeToggle } from './mode-toggle'
 import { Icons } from './icons'
 import UserAccountNav from '../contents/user-account-nav'
 import { getAuthSession } from '@/lib/auth'
+import SearchBar from './search-bar'
 
 export default async function Navbar() {
   const session = await getAuthSession()
@@ -19,8 +20,7 @@ export default async function Navbar() {
           <p className='hidden text-white font-brand text-sm font-bold md:block'>Breddit</p>
         </Link>
 
-        {/* TODO: add search bar */}
-        {/* <SearchBar /> */}
+        <SearchBar />
 
         <div className='flex items-center space-x-2'>
           <ModeToggle />
