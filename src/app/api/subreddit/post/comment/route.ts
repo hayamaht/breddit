@@ -14,7 +14,7 @@ export async function PATCH(req: Request) {
   const { postId, text, replyToId } = CommentValidator.parse(body)
 
   try {
-    createComment(text, postId, session.user.id, replyToId)
+    await createComment(text, postId, session.user.id, replyToId)
 
     return new Response('OK')
   } catch (error) {
