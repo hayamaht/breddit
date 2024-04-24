@@ -19,7 +19,7 @@ export default function PostVoteClient({
 }:{
   postId: string,
   initialVotesAmt: number,
-  initialVote?: VoteType
+  initialVote?: VoteType | null
 }) {
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt)
   const [currentVote, setCurrentVote] = useState(initialVote)
