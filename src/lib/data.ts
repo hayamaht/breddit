@@ -286,3 +286,18 @@ export async function fetchManyComments(postId:string) {
     console.error(`%>> Error: ${error}`)
   }
 }
+
+export async function fetchFirstCommentVote(commentId: string, userId: string) {
+  try {
+    const data = await db.commentVote.findFirst({
+      where: {
+        userId,
+        commentId,
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+  }
+}
+
