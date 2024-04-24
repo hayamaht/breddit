@@ -15,6 +15,7 @@ import { Button } from '../ui/button'
 import { MessageSquareIcon } from 'lucide-react'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
+import CommentVotes from './comment-votes'
 
 type ExtendedComment = Comment & {
   votes: CommentVote[]
@@ -88,12 +89,11 @@ export default function PostComment({
       </p>
 
       <div className='flex gap-2 items-center'>
-        {/* TODO: Add comment votes */}
-        {/* <CommentVotes
+        <CommentVotes
           commentId={comment.id}
           votesAmt={votesAmt}
           currentVote={currentVote}
-        /> */}
+        />
 
         <Button
           onClick={() => {
