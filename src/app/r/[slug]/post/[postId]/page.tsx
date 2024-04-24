@@ -1,3 +1,4 @@
+import CommentsSection from '@/components/contents/comments-section'
 import EditorOutput from '@/components/contents/editor-output'
 import PostVoteServer from '@/components/contents/post-vote-server'
 import { buttonVariants } from '@/components/ui/button'
@@ -63,8 +64,7 @@ export default async function SubRedditPostPage({
             fallback={
               <Loader2Icon className='h-5 w-5 animate-spin text-zinc-500' />
             }>
-            {/* TODO: add comments section */}
-            {/* <CommentsSection postId={post?.id ?? cachedPost.id} /> */}
+            <CommentsSection postId={post?.id ?? cachedPost.id} />
           </Suspense>
         </div>
       </div>

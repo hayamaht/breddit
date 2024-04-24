@@ -261,3 +261,28 @@ export async function fetchUniquePost(postId:string) {
     console.error(`%>> Error: ${error}`)
   }
 }
+
+export async function fetchManyComments(postId:string) {
+  try {
+    const data = await db.comment.findMany({
+      where: {
+        postId: postId,
+        replyToId: null, // only fetch top-level comments
+      },
+      include: {
+        author: true,
+        votes: true,
+        replies: {
+          // first level replies
+          include: {
+            author: true,
+            votes: true,
+          },
+        },
+      },
+    })
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+  }
+}
