@@ -1,3 +1,4 @@
+import { VoteType } from "@prisma/client"
 import { db } from "./db"
 
 export async function createSubreddit(name:string, userId: string) {
@@ -14,15 +15,96 @@ export async function createSubreddit(name:string, userId: string) {
   }
 }
 
-export async function createSubscription(subredditId:string, userId: string) {
+
+export async function createSubscribe(subredditId: string, userId: string) {
   try {
     await db.subscription.create({
       data: {
-        userId: userId,
-        subredditId
+        subredditId,
+        userId,
       },
     })
   } catch (error) {
-    console.error(`%>> Error: ${error}`)
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function deleteSubscribe(subredditId: string, userId: string) {
+  try {
+    await db.subscription.deleteMany({
+      where: {
+        subredditId,
+        userId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function createPost(
+  title: string,
+  content: string,
+  subredditId: string, 
+  userId: string
+) {
+  try {
+    await db.post.create({
+      data: {
+        title,
+        content,
+        authorId: userId,
+        subredditId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function createVote(voteType: VoteType, postId: string, userId: string) {
+  try {
+    await db.vote.create({
+      data: {
+        type: voteType,
+        userId: userId,
+        postId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function updateVote(voteType: VoteType, postId: string, userId: string) {
+  try {
+    await db.vote.update({
+      where: {
+        userId_postId: {
+          postId,
+          userId,
+        },
+      },
+      data: {
+        type: voteType,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function deleteVote(postId: string, userId: string) {
+  try {
+    await db.vote.delete({
+      where: {
+        userId_postId: {
+          postId,
+          userId,
+        }
+      }
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
   }
 }

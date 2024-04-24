@@ -33,8 +33,13 @@
 * [X] edit home page
 * [ ] add i18n
 * [X] add route `/r/create/page.tsx`
-* [ ] add `tanstack/react-query`
+* [X] add `tanstack/react-query`
   * [X] add package `@tanstack/react-query`
   * [X] add `QueryClientProvider`
 * [X] add `api/subreddit/route.ts`
   * [X] add package `zod`
+* [X] add layout of `[slug]`
+* [X] add `api/subreddit/subscribe/route.ts`
+* [X] add `api/subreddit/unsubscribe/route.ts`
+* [X] add `/r/[slug]/submit`
+* [ ] add `api/subreddit/post/create`

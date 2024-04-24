@@ -1,6 +1,6 @@
 import { getAuthSession } from '@/lib/auth'
 import { fetchFirstSubredditName } from '@/lib/data'
-import { createSubreddit, createSubscription } from '@/lib/actions'
+import { createSubreddit, createSubscribe, } from '@/lib/actions'
 import { SubredditValidator } from '@/lib/validators/subreddit'
 import { z } from 'zod'
 
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     }
 
     const subreddit = await createSubreddit(name, session.user.id)
-    createSubscription(subreddit!.id, session.user.id)
+    createSubscribe(subreddit!.id, session.user.id)
     
     return new Response(subreddit!.name)
     
