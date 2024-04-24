@@ -1,5 +1,6 @@
 import EditorOutput from '@/components/contents/editor-output'
 import { buttonVariants } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { fetchFirstPostWithId } from '@/lib/data'
 import { redis } from '@/lib/redis'
 import { formatTimeToNow } from '@/lib/utils'
@@ -9,6 +10,9 @@ import { ArrowBigDownIcon, ArrowBigUpIcon, Loader2Icon } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import React, { Suspense } from 'react'
 
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
+
 export default async function SubRedditPostPage({ 
   params 
 }: {
@@ -16,24 +20,28 @@ export default async function SubRedditPostPage({
     postId: string
   }
 }) {
-  // const postId = params.postId
-  // const cachedPost = (await redis.hgetall(
-  //   `post:${params.postId}`
-  // )) as CachedPost
+  const postId = params.postId
+  const cachedPost = (await redis.hgetall(
+    `post:${params.postId}`
+  )) as CachedPost
 
-  // let post: (Post & { votes: Vote[]; author: User }) | null = null
+  let post: (Post & { votes: Vote[]; author: User }) | null = null
 
-  // if (!cachedPost) {
-  //   const p = await fetchFirstPostWithId(postId)
-  //   if (!p) return notFound()
-  //   post = p
-  // }
+  if (!cachedPost) {
+    const p = await fetchFirstPostWithId(postId)
+    if (!p) return notFound()
+    post = p
+  }
 
-  // if (!post && !cachedPost) return notFound()
+  if (!post && !cachedPost) return notFound()
 
   return (
     <div>
-      Post: {params.postId}
+      <div className='h-full flex flex-col sm:flex-row items-center sm:items-start justify-between'>
+        <Suspense fallback={<PostVoteShell />}>
+          
+        </Suspense>
+      </div>
     </div>
   )
 }
