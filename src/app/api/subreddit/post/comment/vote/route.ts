@@ -17,7 +17,7 @@ export async function PATCH(req: Request) {
   try {
     // check if user has already voted on this post
     const existingVote = await fetchFirstCommentVote(commentId, session.user.id)
-
+    
     if (existingVote) {
       // if vote type is the same as existing vote, delete the vote
       if (existingVote.type === voteType) {
