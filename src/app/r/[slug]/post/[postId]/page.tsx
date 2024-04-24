@@ -1,7 +1,7 @@
 import EditorOutput from '@/components/contents/editor-output'
+import PostVoteServer from '@/components/contents/post-vote-server'
 import { buttonVariants } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
-import { fetchFirstPostWithId } from '@/lib/data'
+import { fetchFirstPostWithId, fetchUniquePost } from '@/lib/data'
 import { redis } from '@/lib/redis'
 import { formatTimeToNow } from '@/lib/utils'
 import { CachedPost } from '@/types/redis'
@@ -39,8 +39,34 @@ export default async function SubRedditPostPage({
     <div>
       <div className='h-full flex flex-col sm:flex-row items-center sm:items-start justify-between'>
         <Suspense fallback={<PostVoteShell />}>
-          
+          <PostVoteServer
+            postId={post?.id ?? cachedPost.id}
+            getData={async () => {
+              const post = await fetchUniquePost(params.postId)
+              if (!post) return notFound()
+              return post
+            }}
+          />
         </Suspense>
+
+        <div className='sm:w-0 w-full flex-1 bg-background border border-border p-4 rounded-sm'>
+          <p className='max-h-40 mt-1 truncate text-xs text-foreground/60'>
+            Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
+            {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
+          </p>
+          <h1 className='text-2xl font-semibold py-2 leading-6 text-primary border-b border-primary mb-4'>
+            {post?.title ?? cachedPost.title}
+          </h1>
+
+          <EditorOutput content={post?.content ?? cachedPost.content} />
+          <Suspense
+            fallback={
+              <Loader2Icon className='h-5 w-5 animate-spin text-zinc-500' />
+            }>
+            {/* TODO: add comments section */}
+            {/* <CommentsSection postId={post?.id ?? cachedPost.id} /> */}
+          </Suspense>
+        </div>
       </div>
     </div>
   )
