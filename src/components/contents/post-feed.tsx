@@ -52,7 +52,8 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
 
   useEffect(() => {
     if (entry?.isIntersecting) {
-      fetchNextPage() // Load more posts when the last post comes into view
+      // Load more posts when the last post comes into view
+      fetchNextPage() 
     }
   }, [entry, fetchNextPage])
   

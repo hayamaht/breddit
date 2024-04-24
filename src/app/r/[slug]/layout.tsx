@@ -69,15 +69,14 @@ export default async function SlugLayout({
                 />
               ) : null}
               
-              {/* TODO: add create post btn */}
-              {/* <Link
+              <Link
                 className={buttonVariants({
                   variant: 'green',
                   className: 'w-full',
                 })}
-                href={`r/${slug}/submit`}>
+                href={`/r/${slug}/submit`}>
                 Create Post
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
