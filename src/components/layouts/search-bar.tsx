@@ -9,6 +9,7 @@ import { Prisma, Subreddit } from "@prisma/client"
 import axios from "axios"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
 import { UsersIcon } from "lucide-react"
+import Link from "next/link"
 
 export default function SearchBar() {
   const [input, setInput] = useState<string>('')
@@ -53,7 +54,7 @@ export default function SearchBar() {
   return (
     <Command
       ref={commandRef}
-      className='relative rounded-lg border max-w-lg z-50 overflow-visible'>
+      className='max-w-sm bg-secondary border z-50'>
       <CommandInput
         isLoading={isFetching}
         onValueChange={(text) => {
@@ -66,7 +67,7 @@ export default function SearchBar() {
       />
 
       {input.length > 0 && (
-        <CommandList className='absolute bg-background top-full inset-x-0 shadow rounded-b-md'>
+        <CommandList className='absolute bg-secondary top-full inset-x-0 shadow rounded-md'>
           {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
           {(queryResults?.length ?? 0) > 0 ? (
             <CommandGroup heading='Communities'>
@@ -79,7 +80,8 @@ export default function SearchBar() {
                   key={subreddit.id}
                   value={subreddit.name}>
                   <UsersIcon className='mr-2 h-4 w-4' />
-                  <a href={`/r/${subreddit.name}`}>r/{subreddit.name}</a>
+                  {/* <a href={`/r/${subreddit.name}`}>r/{subreddit.name}</a> */}
+                  <Link href={`/r/${subreddit.name}`}>r/{subreddit.name}</Link>
                 </CommandItem>
               ))}
             </CommandGroup>
