@@ -108,3 +108,21 @@ export async function deleteVote(postId: string, userId: string) {
     console.error(`Database Error: ${error}`)
   }
 }
+
+export async function createComment(
+  text: string, postId: string, userId: string, replyToId?: string
+) {
+  try {
+    await db.comment.create({
+      data: {
+        text,
+        postId,
+        authorId: userId,
+        replyToId,
+      },
+    })
+    
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
