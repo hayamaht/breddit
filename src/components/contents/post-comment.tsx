@@ -62,7 +62,7 @@ export default function PostComment({
   })
   
   return (
-    <div ref={commentRef} className='flex flex-col'>
+    <div ref={commentRef} className='flex flex-col space-y-2'>
       <div className='flex items-center'>
         <UserAvatar
           user={{
@@ -72,15 +72,17 @@ export default function PostComment({
           className='h-6 w-6'
         />
         <div className='ml-2 flex items-center gap-x-2'>
-          <p className='text-sm font-medium text-gray-900'>u/{comment.author.username}</p>
+          <p className='text-sm font-medium text-foreground/80'>u/{comment.author.username}</p>
 
-          <p className='max-h-40 truncate text-xs text-zinc-500'>
+          <p className='max-h-40 truncate text-xs text-foreground/60'>
             {formatTimeToNow(new Date(comment.createdAt))}
           </p>
         </div>
       </div>
 
-      <p className='text-sm text-zinc-900 mt-2'>{comment.text}</p>
+      <p className='text-sm text-foreground border border-border p-2 rounded'>
+        {comment.text}
+      </p>
 
       <div className='flex gap-2 items-center'>
         {/* <CommentVotes

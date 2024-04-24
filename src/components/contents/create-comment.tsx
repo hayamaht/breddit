@@ -47,6 +47,7 @@ export default function CreateComment({
     },
     onSuccess: () => {
       router.refresh()
+      toast.success('Comment created successfully.')
       setInput('')
     },
   })
