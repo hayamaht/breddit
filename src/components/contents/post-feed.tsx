@@ -24,9 +24,8 @@ export default function PostFeed({ initialPosts, subredditName }: PostFeedProps)
   const { data: session } = useSession()
   const userId = session?.user.id
   const fetchPosts = async ({ pageParam = 1 }) => {
-    // TODO: /api/post
     const query =
-      `/api/posts?limit=${10}&page=${pageParam}` +
+      `/api/posts?limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}` +
       (!!subredditName ? `&subredditName=${subredditName}` : '')
 
     const { data } = await axios.get(query)

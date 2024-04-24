@@ -190,6 +190,30 @@ export async function fetchManyPosts() {
   }
 }
 
+export async function fetchManyPostsWithWhere(where: {}, limit: number, skip: number) {
+  try {
+    const data = await db.post.findMany({
+      where: where,
+      take: limit,
+      skip: skip,
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        votes: true,
+        author: true,
+        comments: true,
+        subreddit: true,
+      },
+    })
+
+    return data
+  } catch (error) {
+    console.error(`%>> Error: ${error}`)
+    return []
+  }
+}
+
 export async function fetchFirstPostWithId(postId:string) {
   try {
     const data = await db.post.findFirst({
