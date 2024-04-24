@@ -37,22 +37,22 @@ export default async function SlugLayout({
 
           {/* info sidebar */}
           <div className='overflow-hidden h-fit rounded-lg border border-border order-first md:order-last'>
-            <div className='px-6 py-4 bg-yellow-600'>
+            <div className='px-6 py-4 bg-primary/60'>
               <p className='font-semibold py-3'>About r/{subreddit.name}</p>
             </div>
-            <div className='divide-y divide-primary px-6 py-4 text-sm leading-6 bg-yellow-600/30'>
+            <div className='divide-y divide-white/50 px-6 py-4 text-sm leading-6 bg-primary/30'>
               <div className='flex justify-between gap-x-4 py-3'>
-                <div className='text-foreground'>Created</div>
-                <div className='text-destructive text-md'>
+                <div className='text-foreground/50'>Created</div>
+                <div className='text-foreground text-md'>
                   <time dateTime={subreddit.createdAt.toDateString()}>
                     {format(subreddit.createdAt, 'MMMM d, yyyy')}
                   </time>
                 </div>
               </div>
               <div className='flex justify-between gap-x-4 py-3'>
-                <div className='text-foreground'>Members</div>
+                <div className='text-foreground/50'>Members</div>
                 <div className='flex items-start gap-x-2'>
-                  <div className='text-destructive text-md'>{memberCount}</div>
+                  <div className='text-foreground text-md'>{memberCount}</div>
                 </div>
               </div>
               {isCreator ? (
@@ -71,7 +71,7 @@ export default async function SlugLayout({
               
               <Link
                 className={buttonVariants({
-                  variant: 'green',
+                  variant: 'yellow',
                   className: 'w-full',
                 })}
                 href={`/r/${slug}/submit`}>
