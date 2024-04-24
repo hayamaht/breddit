@@ -2,6 +2,7 @@ import { getAuthSession } from '@/lib/auth'
 import { fetchManyComments } from '@/lib/data'
 import React from 'react'
 import PostComment from './post-comment'
+import CreateComment from './create-comment'
 
 export default async function CommentsSection({ 
   postId 
@@ -17,7 +18,7 @@ export default async function CommentsSection({
     <div className='flex flex-col gap-y-4 mt-4'>
       <hr className='w-full h-px my-6' />
 
-      {/* <CreateComment postId={postId} /> */}
+      <CreateComment postId={postId} />
 
       <div className='flex flex-col gap-y-6 mt-4'>
         {comments
