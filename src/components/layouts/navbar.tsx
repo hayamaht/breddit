@@ -23,7 +23,7 @@ export default async function Navbar() {
           <p className='hidden text-white font-brand text-sm font-bold md:block'>Breddit</p>
         </Link>
 
-        <SearchBar />
+        {/* <SearchBar /> */}
 
         <div className='flex items-center space-x-2'>
           <ModeToggle />

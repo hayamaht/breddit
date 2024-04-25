@@ -17,67 +17,62 @@ export default function SearchBar() {
   const commandRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
+  useOnClickOutside(commandRef, () => {
+    setInput('')
+  })
+
+  const request = debounce(async () => {
+    refetch()
+  }, 300)
+
+  const debounceRequest = useCallback(() => {
+    request()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   
-  // useOnClickOutside(commandRef, () => {
-  //   setInput('')
-  // })
+  const {
+    isFetching,
+    data: queryResults,
+    refetch,
+    isFetched,
+  } = useQuery({
+    queryFn: async () => {
+      console.log(`query: ${input}`)
+      if (!input) return []
+      const { data } = await axios.get(`/api/search?q=${input}`)
+      console.log(data)
+      return data as (Subreddit & {
+        _count: Prisma.SubredditCountOutputType
+      })[]
+    },
+    queryKey: ['search-query'],
+    enabled: false,
+  })
 
-  // const request = debounce(async () => {
-  //   refetch()
-  // }, 300)
-
-  // const debounceRequest = useCallback(() => {
-  //   request()
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
-  
-  // const {
-  //   isFetching,
-  //   data: queryResults,
-  //   refetch,
-  //   isFetched,
-  // } = useQuery({
-  //   queryFn: async () => {
-  //     if (!input) return []
-  //     const { data } = await axios.get(`/api/search?q=${input}`)
-  //     return data as (Subreddit & {
-  //       _count: Prisma.SubredditCountOutputType
-  //     })[]
-  //   },
-  //   queryKey: ['search-query'],
-  //   enabled: false,
-  // })
-
-  // useEffect(() => {
-  //   setInput('')
-  // }, [pathname])
+  useEffect(() => {
+    setInput('')
+  }, [pathname])
   
   return (
-    <Command
-      className='relative bg-secondary rounded-lg border max-w-lg z-50 overflow-visible'>
+    <Command ref={commandRef} className="relative max-w-lg bg-secondary">
       <CommandInput
-        isLoading={false}
-        // isLoading={isFetching}
+        isLoading={isFetching}
         onValueChange={(text) => {
           setInput(text)
-          // debounceRequest()
+          debounceRequest()
         }}
         value={input}
+        placeholder='Search'
         className='outline-none border-none focus:border-none focus:outline-none ring-0'
-        placeholder='Search communities...'
       />
 
-      {/* {input.length > 0 && ( */}
-        {/* <CommandList className='absolute bg-secondary top-full inset-x-0 shadow rounded-b-md z-50'> */}
-          {/* {isFetched && <CommandEmpty>No results found.</CommandEmpty>} */}
-          {/* {(queryResults?.length ?? 0) > 0 ? (
+      {input.length > 0 && (
+        <CommandList>
+          {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
+          {!queryResults || queryResults.length === 0 ? null : (
             <CommandGroup heading='Communities'>
               {queryResults?.map((subreddit) => (
                 <CommandItem
-                  onSelect={(e) => {
-                    console.log(`eee: ${e}`)
-                    router.refresh()
-                  }}
                   key={subreddit.id}
                   value={subreddit.name}>
                   <UsersIcon className='mr-2 h-4 w-4' />
@@ -85,9 +80,9 @@ export default function SearchBar() {
                 </CommandItem>
               ))}
             </CommandGroup>
-          ) : null} */}
-        {/* </CommandList> */}
-      {/* )} */}
+          )}
+        </CommandList>
+      )}
     </Command>
   )
 }

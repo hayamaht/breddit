@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/theme";
 import Navbar from "@/components/layouts/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import QueryProvider from "@/components/providers/query";
+import SearchBar from "@/components/layouts/search-bar";
 
 const font = Font({
   weight: ["100" , "300" , "400" , "500" , "700" , "900"],
@@ -45,7 +46,6 @@ export default function RootLayout({
         >
           <QueryProvider>
             <Navbar />
-
             <div>{authModal}</div>
             <div className="container max-w-7xl h-full pt-20 font-sans ">
               {children}
