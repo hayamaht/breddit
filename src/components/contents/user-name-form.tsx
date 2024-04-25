@@ -29,7 +29,7 @@ export default function UserNameForm({
   })
 
   const { mutate: updateUsername, isPending } = useMutation({
-    mutationFn: async ({name}: any) => {
+    mutationFn: async ( name: string) => {
       const payload = { name }
 
       const { data } = await axios.patch(`/api/username/`, payload)
@@ -49,13 +49,12 @@ export default function UserNameForm({
       })
     },
     onSuccess: () => {
-      toast('Successful', {
+      toast.success('Successful', {
         description: 'Your username has been updated.',
       })
       router.refresh()
     },
   })
-
 
   function onSubmit(values: z.infer<typeof UsernameValidator>) {
     updateUsername(values.name)
