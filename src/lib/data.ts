@@ -138,7 +138,7 @@ export async function fetchFirstSubredditWithPosts(slug:string) {
 
 export async function fetchManyPostsWithSubreddit(subscriptions: any) {
   // TODO: change `any`
-  console.log(subscriptions)
+  // console.log(subscriptions)
   
   try {
     const data = await db.post.findMany({
