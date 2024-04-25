@@ -17,77 +17,77 @@ export default function SearchBar() {
   const commandRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  useOnClickOutside(commandRef, () => {
-    setInput('')
-  })
-
-  const request = debounce(async () => {
-    refetch()
-  }, 300)
-
-  const debounceRequest = useCallback(() => {
-    request()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
   
-  const {
-    isFetching,
-    data: queryResults,
-    refetch,
-    isFetched,
-  } = useQuery({
-    queryFn: async () => {
-      if (!input) return []
-      const { data } = await axios.get(`/api/search?q=${input}`)
-      return data as (Subreddit & {
-        _count: Prisma.SubredditCountOutputType
-      })[]
-    },
-    queryKey: ['search-query'],
-    enabled: false,
-  })
+  // useOnClickOutside(commandRef, () => {
+  //   setInput('')
+  // })
 
-  useEffect(() => {
-    setInput('')
-  }, [pathname])
+  // const request = debounce(async () => {
+  //   refetch()
+  // }, 300)
+
+  // const debounceRequest = useCallback(() => {
+  //   request()
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
+  
+  // const {
+  //   isFetching,
+  //   data: queryResults,
+  //   refetch,
+  //   isFetched,
+  // } = useQuery({
+  //   queryFn: async () => {
+  //     if (!input) return []
+  //     const { data } = await axios.get(`/api/search?q=${input}`)
+  //     return data as (Subreddit & {
+  //       _count: Prisma.SubredditCountOutputType
+  //     })[]
+  //   },
+  //   queryKey: ['search-query'],
+  //   enabled: false,
+  // })
+
+  // useEffect(() => {
+  //   setInput('')
+  // }, [pathname])
   
   return (
     <Command
-      ref={commandRef}
-      className='max-w-sm bg-secondary border z-50'>
+      className='relative bg-secondary rounded-lg border max-w-lg z-50 overflow-visible'>
       <CommandInput
-        isLoading={isFetching}
+        isLoading={false}
+        // isLoading={isFetching}
         onValueChange={(text) => {
           setInput(text)
-          debounceRequest()
+          // debounceRequest()
         }}
         value={input}
         className='outline-none border-none focus:border-none focus:outline-none ring-0'
         placeholder='Search communities...'
       />
 
-      {input.length > 0 && (
-        <CommandList className='absolute bg-secondary top-full inset-x-0 shadow rounded-md'>
-          {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
-          {(queryResults?.length ?? 0) > 0 ? (
+      {/* {input.length > 0 && ( */}
+        {/* <CommandList className='absolute bg-secondary top-full inset-x-0 shadow rounded-b-md z-50'> */}
+          {/* {isFetched && <CommandEmpty>No results found.</CommandEmpty>} */}
+          {/* {(queryResults?.length ?? 0) > 0 ? (
             <CommandGroup heading='Communities'>
               {queryResults?.map((subreddit) => (
                 <CommandItem
                   onSelect={(e) => {
-                    router.push(`/r/${e}`)
+                    console.log(`eee: ${e}`)
                     router.refresh()
                   }}
                   key={subreddit.id}
                   value={subreddit.name}>
                   <UsersIcon className='mr-2 h-4 w-4' />
-                  {/* <a href={`/r/${subreddit.name}`}>r/{subreddit.name}</a> */}
-                  <Link href={`/r/${subreddit.name}`}>r/{subreddit.name}</Link>
+                  <a href={`/r/${subreddit.name}`}>r/{subreddit.name}</a>
                 </CommandItem>
               ))}
             </CommandGroup>
-          ) : null}
-        </CommandList>
-      )}
+          ) : null} */}
+        {/* </CommandList> */}
+      {/* )} */}
     </Command>
   )
 }

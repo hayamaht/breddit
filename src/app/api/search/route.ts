@@ -6,17 +6,22 @@ export async function GET(req: Request) {
 
   if (!q) return new Response('Invalid query', { status: 400 })
 
-  const results = await db.subreddit.findMany({
-    where: {
-      name: {
-        startsWith: q,
+  try {
+    const results = await db.subreddit.findMany({
+      where: {
+        name: {
+          startsWith: q,
+        },
       },
-    },
-    include: {
-      _count: true,
-    },
-    take: 5,
-  })
-
-  return new Response(JSON.stringify(results))
+      include: {
+        _count: true,
+      },
+      take: 5,
+    })
+  
+    return new Response(JSON.stringify(results))
+  } catch (error) {
+    return new Response(`Error: ${error}`, { status: 500 })
+  }
+  
 }

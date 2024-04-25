@@ -47,7 +47,7 @@ export default function RootLayout({
             <Navbar />
 
             <div>{authModal}</div>
-            <div className="container h-full pt-20 font-sans ">
+            <div className="container max-w-7xl h-full pt-20 font-sans ">
               {children}
             </div>
           </QueryProvider>
